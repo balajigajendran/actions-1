@@ -1,1 +1,2 @@
 # actions-1
+Method 1: Directly via the GitHub Website (Fastest)If you do not want to use the command line, you can create and commit the file entirely in your browser.Go to GitHub and open your existing repository.Look below your file list. If your repository has no README, a prompt will appear at the bottom saying Add a README. Click it.Alternative: Click the Add file dropdown button near the top right of the file structure and select Create new file. Name the
