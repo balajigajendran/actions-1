@@ -13,7 +13,8 @@ jobs:
       run: ls -lrt    
 
     - name: Execute the script
-      run: |
-         chmod +x ascii_workflow.sh
-         ./ascii_workflow.sh
+      run: chmod +x script.sh
+    
+    - name: Execute the script
+      run: ./script.sh
 
