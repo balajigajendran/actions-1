@@ -13,8 +13,7 @@ jobs:
       run: ls -lrt    
 
     - name: Execute the script
-      run: chmod +x script.sh
-    
-    - name: Execute the script
-      run: ./script.sh
+      run: |
+         chmod +x script.sh
+         ./script.sh
 
