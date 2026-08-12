@@ -8,18 +8,12 @@ jobs:
     steps:
     - name: checkout apps
       uses: actions/checkout@v7
-    
-    - name: Install cowsay program
-      run: sudo apt-get install cowsay -y
 
-    - name: Execute the coway command
-      run: cowsay -f dragon "Run for cover, i m  a dragon" >> dragon.txt
-    
-    - name: Test file exist
-      run: ls -lrt |grep -i dragon.txt
-         
-    - name: Read the Dragon file
-      run: cat dragon.txt
-    
     - name: list the file
-      run: ls -lrt 
+      run: ls -lrt    
+
+    - name: Execute the script
+      run: |
+        chmod +x ascii_workflow.sh
+        ./ascii_workflow.sh
+
