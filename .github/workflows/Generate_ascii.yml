@@ -10,10 +10,44 @@ jobs:
       uses: actions/checkout@v7
 
     - name: list the file
-      run: ls -lrt    
-
-    - name: Execute the script
+      run: sudo apt-get install cowsay -y
+    
+    - name: Execute cowsay Command
+      run: cowsay -f dragon "Run for cover, i m  a dragon" >> dragon.txt
+    
+    - name: Grep the file
       run: |
-         chmod +x script.sh
-         ./script.sh
+        grep -i "dragon" dragon.txt
+        cat dragon.txt
+    
+    - name: upload the dragon file
+      uses: actions/upload-artifact@v7
+      with:
+        name: dragon-text-file
+        path: dragon.txt     
+  
+  Test_job:
+    needs: acsii_jobs
+    runs-on: ubuntu-latest
+    steps:
+    - name: download the dragon file
+      uses: actions/download-artifact@v8
+      with:
+        name: dragon-text-file
+
+
+  Deploy_job:
+    needs: Test_job
+    runs-on: ubuntu-latest
+    steps:
+    - name: download the dragon file
+      uses: actions/download-artifact@v8
+      with:
+        name: dragon-text-file
+    
+    - name: Read the file
+      run: cat dragon.txt
+
+  
+
 
