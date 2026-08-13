@@ -4,26 +4,24 @@ on: push
 
 env:
   CONT_REG: docker.io
-  Docker_User: balajigajendran
   IMG_NAME: github-actions-nginx
-  Docker_pass: MyTest@@90@@12
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
     - name: Docker Build
-      run: echo docker build -t ${{ env.CONT_REG }}/$Docker_User/$IMG_NAME:latest
+      run: echo docker build -t ${{ env.CONT_REG }}/${{ vars.Docker_User }}/$IMG_NAME:latest
     
     - name: Docker login
-      run:  echo docker login --username=$Docker_User --password=$Docker_pass
+      run:  echo docker login --username=${{ vars.Docker_User }} --password=${{ secrets.Docker_pass }}
 
     - name: Docker Publish
-      run: echo docker push ${{ env.CONT_REG }}/$Docker_User/$IMG_NAME:latest
+      run: echo docker push ${{ env.CONT_REG }}/${{ vars.Docker_User }}/$IMG_NAME:latest
   
   Deploy:
     needs: docker
     runs-on: ubuntu-latest
     steps:
     - name: Docker run
-      run: echo docker run -d -p 8080:80  ${{ env.CONT_REG }}/$Docker_User/$IMG_NAME:latest
+      run: echo docker run -d -p 8080:80  ${{ env.CONT_REG }}/${{ vars.Docker_User }}/$IMG_NAME:latest
